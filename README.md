@@ -2,7 +2,7 @@
 
 > **语言 / Language**: **简体中文** | [English](./README.en.md)
 
-> **接地版「五视角」深度研究 skill —— 每个结论都用真实联网检索的来源 `[S#]` 背书，而非模型记忆。**
+> **实证版「五视角」深度研究 skill —— 每个结论都用真实联网检索的来源 `[S#]` 背书，而非模型记忆。**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
