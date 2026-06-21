@@ -14,6 +14,16 @@
 
 > **原方法只靠模型记忆作答，容易一本正经地编造。本 skill 强制每一个阶段都接地于真实联网检索，且每条事实都必须引用检索到的来源。**
 
+## 可视化报告（HTML / PDF）· 点开看真实样本
+
+报告不止是 markdown —— skill 会**同时产出三种格式**：可读的 `.md`、带样式排版的 **HTML 可视化版**、以及便于分享存档的 **PDF**。HTML 与 PDF 都是排版精良、易读性强的可视化报告，开箱即读、可直接分享。
+
+**在线样本**（一份真实生成的报告：《青少年近视后佩戴离焦框架眼镜与散光度数增加的相关性》）：
+
+- [HTML 可视化版 —— 点开即看渲染效果](https://wsoph.github.io/storm-research/examples/storm-research-defocus-astigmatism-2026-06-21.html)
+- [PDF 版](./examples/storm-research-defocus-astigmatism-2026-06-21.pdf)
+- [Markdown 版](./examples/storm-research-defocus-astigmatism-2026-06-21.md)
+
 ## 名字的由来：STORM 是什么意思
 
 **STORM** 是斯坦福 OVAL 实验室提出的一套研究写作方法的缩写：
@@ -81,6 +91,7 @@ storm-research/
 │   └── method.md         # 四段提示词原文(verbatim)+ 每段接地规则
 ├── scripts/
 │   └── search.py         # 自带 anysearch 客户端(stdlib-only)
+├── examples/             # 真实生成的样本报告(md / html / pdf)
 ├── LICENSE
 ├── README.md             # 中文版（默认）
 └── README.en.md          # 英文版

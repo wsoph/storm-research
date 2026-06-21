@@ -14,6 +14,16 @@
 
 > **The original runs purely on the model's memory and happily hallucinates. This skill forces every stage to be grounded in real web search, and every factual claim must cite a retrieved source.**
 
+## Visual reports (HTML / PDF) · click to see a real sample
+
+Reports aren't just markdown — the skill emits **all three formats at once**: a readable `.md`, a styled **HTML visual report**, and a shareable **PDF**. The HTML and PDF versions are clean, well-typeset, easy to read, and ready to share as-is.
+
+**Live sample** (a real generated report — *"Correlation between defocus spectacle lenses and astigmatism progression in myopic teens"*):
+
+- [HTML visual version — click to see it rendered](https://wsoph.github.io/storm-research/examples/storm-research-defocus-astigmatism-2026-06-21.html)
+- [PDF version](./examples/storm-research-defocus-astigmatism-2026-06-21.pdf)
+- [Markdown version](./examples/storm-research-defocus-astigmatism-2026-06-21.md)
+
 ## What "STORM" stands for
 
 **STORM** is an acronym from Stanford's OVAL lab for a research-writing method:
@@ -80,6 +90,7 @@ storm-research/
 │   └── method.md         # the 4 prompts verbatim + per-stage grounding rules
 ├── scripts/
 │   └── search.py         # self-contained anysearch client (stdlib-only)
+├── examples/             # a real generated sample report (md / html / pdf)
 ├── LICENSE
 ├── README.md             # Chinese version (default)
 └── README.en.md          # English version
