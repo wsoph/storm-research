@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Generated research outputs (keep the skill clean)
+storm-research-*.md
+storm-research-*.html
+storm-research-*.pdf
