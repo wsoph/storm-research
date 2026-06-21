@@ -1,21 +1,20 @@
 # storm-research
 
+> **语言 / Language**: **简体中文** | [English](./README.en.md)
+
 > **接地版「五视角」深度研究 skill —— 每个结论都用真实联网检索的来源 `[S#]` 背书，而非模型记忆。**
-> **A grounded, STORM-style multi-perspective research skill for [Claude Code](https://claude.com/claude-code) — every claim is cited to a real web-search result `[S#]`, not model memory.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ---
 
-## 中文
-
-### 这是什么
+## 这是什么
 
 `storm-research` 是一个 [Claude Code](https://claude.com/claude-code) **技能（skill）**。它把流行的「4 段提问研究法」（Nav Toor 的 STORM 式方法：五位专家视角 → 矛盾地图 → 综合简报 → 自我同行评议）做了一处关键改造：
 
 > **原方法只靠模型记忆作答，容易一本正经地编造。本 skill 强制每一个阶段都接地于真实联网检索，且每条事实都必须引用检索到的来源。**
 
-### 名字的由来：STORM 是什么意思
+## 名字的由来：STORM 是什么意思
 
 **STORM** 不是天气，而是斯坦福 OVAL 实验室提出的一套研究写作方法的缩写：
 
@@ -24,7 +23,7 @@
 
 它的核心思想是：写一篇有深度的文章前，先**用多个不同视角去提问、再去检索**，从而把题目摸透。本 skill 沿用了这个"多视角 + 检索"的精神（参见下方致谢）。
 
-### 解决的问题
+## 解决的问题
 
 让大模型「做研究」时，它往往把训练记忆当事实输出——听起来权威，却无法核查、容易过时或干脆是幻觉。本 skill 用一条**引用纪律**根治这一点：
 
@@ -32,7 +31,7 @@
 2. **凡结论必引用** —— 每条「最强证据」、每个关键发现、每次矛盾裁决、每个置信度判断，都要至少引用一个 `[S#]`。
 3. **标注空白** —— 任何无法用 `[S#]` 背书的说法，必须打上 `〔仅模型知识，未经检索验证〕` 标签。**把这种标签压到最少，就是这个 skill 的全部意义**——看到一个，就再去搜一次把它换成引用。
 
-### 五个阶段
+## 五个阶段
 
 | 阶段 | 内容 |
 |---|---|
@@ -42,7 +41,7 @@
 | **Stage 3 · 综合简报** | 一段话总结、**五大关键发现（每条带 [S#]）**、隐藏联系、可操作洞察、前沿问题 |
 | **Stage 4 · 自我同行评议** | 按独立来源数给每条发现打 1–10 分；找出最薄弱环节并**补做一次验证检索**；偏倚检查；可选第六视角；总体评分 |
 
-### 内置检索客户端
+## 内置检索客户端
 
 `scripts/search.py` —— **纯 Python 标准库**，零依赖、零安装，匿名调用 anysearch 的 HTTP API，输出对 UTF-8 安全（中文不乱码）。检索能力来自 [anysearch-skill](https://github.com/anysearch-ai/anysearch-skill)。
 
@@ -59,7 +58,7 @@ python scripts/search.py extract "<url>"
 
 **实战经验（已内置）：** 默认中英双语检索（中文出运营/市场源，英文出权威研究）；优先用摘要、必要时才 `extract`；容忍反爬失败、绝不阻塞；整轮控制在约 25 次检索内。
 
-### 安装与使用
+## 安装与使用
 
 这是一个 Claude Code 个人技能。把整个目录放到技能目录下即可：
 
@@ -69,7 +68,7 @@ git clone https://github.com/wsoph/storm-research.git ~/.claude/skills/storm-res
 
 之后在 Claude Code 里直接 `/storm-research <你的研究题目>`，或在对话里要求「研究 / 深挖 / 分析 / 给我一份简报」，skill 会自动触发。报告**跟随你提问所用的语言**产出（中文题目出中文报告，英文题目出英文报告），文末附完整来源列表。
 
-### 目录结构
+## 目录结构
 
 ```
 storm-research/
@@ -84,87 +83,11 @@ storm-research/
 
 ---
 
-## English
+## 致谢
 
-### What it is
-
-`storm-research` is a personal **skill** for [Claude Code](https://claude.com/claude-code). It takes the popular **4-prompt research method** (Nav Toor's STORM-style flow: five expert perspectives → contradiction map → synthesis briefing → self peer-review) and fixes its one real weakness:
-
-> **The original runs purely on the model's memory and happily hallucinates. This skill forces every stage to be grounded in real web search, and every factual claim must cite a retrieved source.**
-
-### What "STORM" stands for
-
-**STORM** is not the weather — it is an acronym from Stanford's OVAL lab for a research-writing method:
-
-> **S**ynthesis of **T**opic **O**utlines through **R**etrieval and **M**ulti-perspective question asking
-
-Its core idea: before writing anything deep, **ask questions from many distinct perspectives and retrieve evidence for each**, so the topic is genuinely understood. This skill carries over that "multi-perspective + retrieval" spirit (see Credits below).
-
-### The problem it solves
-
-When you ask an LLM to "do research," it tends to emit training-memory as fact — authoritative-sounding, but uncheckable, often stale, sometimes pure hallucination. This skill cures that with one mechanism: **citation discipline.**
-
-1. **Source Pool** — maintain a single numbered list `[S1] [S2] [S3] …`. Each entry is `title + URL + snippet` and comes **only** from the search script's output. Never invent an `[S#]`.
-2. **Cite everything** — every "strongest evidence" line, key finding, contradiction resolution, and confidence judgment must reference ≥1 `[S#]`.
-3. **Tag the gaps** — any claim you can't back with an `[S#]` must be tagged `〔仅模型知识，未经检索验证〕` (model knowledge, not retrieval-verified). **Minimizing those tags is the skill's whole job** — each one is a search you could still run.
-
-### The five stages
-
-| Stage | What happens |
-|---|---|
-| **Stage 0 · Retrieval first** | Restate the topic in one line, name the 5 perspectives, draft ~12–16 bilingual queries, fire them with `search.py multi`, and assemble the numbered Source Pool |
-| **Stage 1 · Five expert perspectives** | Practitioner / Academic / Skeptic / Economist / Historian — each gives a core position, **strongest evidence (must cite [S#])**, and the one thing only they would say |
-| **Stage 2 · Contradiction map** | Find direct conflicts; judge evidence strength by **how many independent [S#]** back each side; name the resolving question; list universal agreement and the collective blind spot |
-| **Stage 3 · Synthesis briefing** | One-paragraph summary, **5 key findings (each cited [S#])**, the hidden connection, the actionable insight, the frontier question |
-| **Stage 4 · Self peer-review** | Score each finding 1–10 weighted by independent sources; find the weakest link and **run one fresh verification search**; bias check; optional 6th perspective; overall grade |
-
-### Bundled search client
-
-`scripts/search.py` is **stdlib-only** — no dependencies, no installs. It talks to anysearch's anonymous HTTP API and is UTF-8-safe (Chinese survives a Windows console). The search capability comes from [anysearch-skill](https://github.com/anysearch-ai/anysearch-skill).
-
-```bash
-# single query -> numbered [S#] list with snippets
-python scripts/search.py search "<query>" --max 5
-
-# up to 5 queries in ONE batch call (use for the Stage 0 query plan)
-python scripts/search.py multi "<q1>" "<q2>" "<q3>" "<q4>" "<q5>" --max 5
-
-# full-page fetch; anti-bot sites print EXTRACT_FAILED and exit 0
-python scripts/search.py extract "<url>"
-```
-
-**Operational rules (baked in from live testing):** bilingual by default (CN surfaces operational/market sources, EN surfaces authoritative research); snippet-first, `extract` only when needed; tolerate anti-bot failures, never block; keep the whole run under ~25 searches.
-
-### Install & use
-
-This is a Claude Code personal skill. Drop the whole directory into your skills folder:
-
-```bash
-git clone https://github.com/wsoph/storm-research.git ~/.claude/skills/storm-research
-```
-
-Then in Claude Code, run `/storm-research <your topic>`, or just ask it to "research / deep-dive / analyze / give me a briefing" and the skill triggers automatically. Reports are written **in the language of your request** (a Chinese topic yields a Chinese report, an English topic yields an English report), ending with a full source list.
-
-### Layout
-
-```
-storm-research/
-├── SKILL.md              # skill entrypoint: trigger description + 5-stage orchestration
-├── references/
-│   └── method.md         # the 4 prompts verbatim + per-stage grounding rules
-├── scripts/
-│   └── search.py         # self-contained anysearch client (stdlib-only)
-├── LICENSE
-└── README.md
-```
-
----
-
-## 致谢 / Credits
-
-- **灵感来源 / Inspiration** — 本 skill 受 Nav Toor 的这篇文章启发：[The 4-prompt research method](https://x.com/heynavtoor/article/2067194761446920264)（[@heynavtoor](https://x.com/heynavtoor)）。
-- **方法与命名 / Method & name** — "STORM" 一词出自斯坦福 OVAL 实验室的研究项目 [Stanford STORM](https://storm-project.stanford.edu/research/storm/)（[stanford-oval/storm](https://github.com/stanford-oval/storm)）。
-- **检索工具 / Search tool** — 联网检索能力来自 [anysearch-skill](https://github.com/anysearch-ai/anysearch-skill)。
+- **灵感来源** —— 本 skill 受 Nav Toor 的这篇文章启发：[The 4-prompt research method](https://x.com/heynavtoor/article/2067194761446920264)（[@heynavtoor](https://x.com/heynavtoor)）。
+- **方法与命名** —— "STORM" 一词出自斯坦福 OVAL 实验室的研究项目 [Stanford STORM](https://storm-project.stanford.edu/research/storm/)（[stanford-oval/storm](https://github.com/stanford-oval/storm)）。
+- **检索工具** —— 联网检索能力来自 [anysearch-skill](https://github.com/anysearch-ai/anysearch-skill)。
 
 ---
 
