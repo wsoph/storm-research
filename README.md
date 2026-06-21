@@ -58,7 +58,7 @@ python scripts/search.py extract "<url>"
 git clone https://github.com/wsoph/storm-research.git ~/.claude/skills/storm-research
 ```
 
-之后在 Claude Code 里直接 `/storm-research <你的研究题目>`，或在对话里要求「研究 / 深挖 / 分析 / 给我一份简报」，skill 会自动触发。报告默认用**用户的语言**（默认中文）产出，文末附完整来源列表。
+之后在 Claude Code 里直接 `/storm-research <你的研究题目>`，或在对话里要求「研究 / 深挖 / 分析 / 给我一份简报」，skill 会自动触发。报告**跟随你提问所用的语言**产出（中文题目出中文报告，英文题目出英文报告），文末附完整来源列表。
 
 ### 目录结构
 
@@ -126,7 +126,7 @@ This is a Claude Code personal skill. Drop the whole directory into your skills 
 git clone https://github.com/wsoph/storm-research.git ~/.claude/skills/storm-research
 ```
 
-Then in Claude Code, run `/storm-research <your topic>`, or just ask it to "research / deep-dive / analyze / give me a briefing" and the skill triggers automatically. Reports are produced in **the user's language** (default Chinese), ending with a full source list.
+Then in Claude Code, run `/storm-research <your topic>`, or just ask it to "research / deep-dive / analyze / give me a briefing" and the skill triggers automatically. Reports are written **in the language of your request** (a Chinese topic yields a Chinese report, an English topic yields an English report), ending with a full source list.
 
 ### Layout
 

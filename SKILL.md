@@ -1,6 +1,6 @@
 ---
 name: storm-research
-description: Use this skill to run deep, multi-perspective research on any topic, grounding every claim in real web search results instead of model memory. Simulates 5 expert perspectives (Practitioner, Academic, Skeptic, Economist, Historian), maps their contradictions, synthesizes a briefing, and peer-reviews itself, firing real anysearch web queries and citing sources at each stage. Use whenever the user wants to research, deep-dive, investigate, analyze a market or topic, compare viewpoints, validate an idea, or asks for a report or briefing, even if they do not say the word "research". Searches Chinese and English sources by default and outputs in the user's language (default Chinese).
+description: Use this skill to run deep, multi-perspective research on any topic, grounding every claim in real web search results instead of model memory. Simulates 5 expert perspectives (Practitioner, Academic, Skeptic, Economist, Historian), maps their contradictions, synthesizes a briefing, and peer-reviews itself, firing real anysearch web queries and citing sources at each stage. Use whenever the user wants to research, deep-dive, investigate, analyze a market or topic, compare viewpoints, validate an idea, or asks for a report or briefing, even if they do not say the word "research". Searches Chinese and English sources by default and writes the report in the language of the user's request (Chinese topic → Chinese report, English topic → English report).
 license: MIT
 ---
 
@@ -98,9 +98,22 @@ perspective (search 1–2 queries if you add it); overall grade.
 
 ## Output
 
-Produce a research report **in the user's language** (default Chinese). Structure
-it as the four stages above (perspectives → contradictions → briefing → review),
-with `[S#]` citations inline. **End with a `## Sources` / `## 参考来源` section**
+**Report language follows the language of the user's request/topic.** A Chinese
+topic produces a Chinese report; an English topic produces an English report. Only
+fall back to Chinese when the request language is genuinely ambiguous. This is
+independent of retrieval — keep firing bilingual (CN + EN) queries regardless of
+output language, since source quality matters more than source language; you
+translate/paraphrase findings into the output language when writing, and `[S#]`
+citations (URLs) are language-neutral.
+
+Localize the structural labels to match the output language:
+- Sources section heading: `## Sources` (EN) ↔ `## 参考来源` (CN)
+- The ungrounded-claim tag: `[model knowledge, not retrieval-verified]` (EN) ↔
+  `〔仅模型知识，未经检索验证〕` (CN)
+- Stage/section and perspective headings likewise.
+
+Structure the report as the four stages above (perspectives → contradictions →
+briefing → review), with `[S#]` citations inline. **End with a Sources section**
 listing the full Source Pool as `[S#] title — URL`.
 
 Offer to save it to `storm-research-<topic>-<date>.md` in the current working
@@ -110,5 +123,7 @@ directory (only write the file if the user wants it).
 - Did Stage 0 actually call `search.py` and build a numbered pool? (If not, the run
   is invalid — go back and search.)
 - Does every key finding carry a `[S#]`?
-- Are `〔仅模型知识，未经检索验证〕` tags rare? (Each one is a search you could still run.)
+- Are ungrounded-claim tags (`〔仅模型知识，未经检索验证〕` / `[model knowledge, not
+  retrieval-verified]`) rare? (Each one is a search you could still run.)
+- Is the report written in the same language as the user's request?
 - Is there a Sources section with real URLs?
