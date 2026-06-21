@@ -15,3 +15,8 @@ Thumbs.db
 storm-research-*.md
 storm-research-*.html
 storm-research-*.pdf
+
+# ...but keep the bundled sample report under examples/
+!examples/storm-research-*.md
+!examples/storm-research-*.html
+!examples/storm-research-*.pdf
