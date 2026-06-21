@@ -81,7 +81,8 @@ storm-research/
 ├── scripts/
 │   └── search.py         # self-contained anysearch client (stdlib-only)
 ├── LICENSE
-└── README.md
+├── README.md             # Chinese version (default)
+└── README.en.md          # English version
 ```
 
 ---

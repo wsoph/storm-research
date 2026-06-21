@@ -82,7 +82,8 @@ storm-research/
 ├── scripts/
 │   └── search.py         # 自带 anysearch 客户端(stdlib-only)
 ├── LICENSE
-└── README.md
+├── README.md             # 中文版（默认）
+└── README.en.md          # 英文版
 ```
 
 ---
