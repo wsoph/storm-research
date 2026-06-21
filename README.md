@@ -10,13 +10,13 @@
 
 ## 这是什么
 
-`storm-research` 是一个 [Claude Code](https://claude.com/claude-code) **技能（skill）**。它把流行的「4 段提问研究法」（Nav Toor 的 STORM 式方法：五位专家视角 → 矛盾地图 → 综合简报 → 自我同行评议）做了一处关键改造：
+`storm-research` 是一个**通用 AI agent 技能（skill）** —— 可在 [Claude Code](https://claude.com/claude-code)、Hermes Agent、OpenClaw、Codex 等支持 skill 的 agent 中通用。它把流行的「4 段提问研究法」（Nav Toor 的 STORM 式方法：五位专家视角 → 矛盾地图 → 综合简报 → 自我同行评议）做了一处关键改造：
 
 > **原方法只靠模型记忆作答，容易一本正经地编造。本 skill 强制每一个阶段都接地于真实联网检索，且每条事实都必须引用检索到的来源。**
 
 ## 名字的由来：STORM 是什么意思
 
-**STORM** 不是天气，而是斯坦福 OVAL 实验室提出的一套研究写作方法的缩写：
+**STORM** 是斯坦福 OVAL 实验室提出的一套研究写作方法的缩写：
 
 > **S**ynthesis of **T**opic **O**utlines through **R**etrieval and **M**ulti-perspective question asking
 > （通过「检索」与「多视角提问」来「综合主题大纲」）
@@ -60,13 +60,17 @@ python scripts/search.py extract "<url>"
 
 ## 安装与使用
 
-这是一个 Claude Code 个人技能。把整个目录放到技能目录下即可：
+这是一个通用 skill，可装进任何支持 skill 的 AI agent（Claude Code、Hermes Agent、OpenClaw、Codex 等）。最简单的方式——**直接把本仓库地址告诉你正在用的 agent，让它帮你安装**：
+
+> 把这个 skill 装进来：https://github.com/wsoph/storm-research
+
+或手动克隆到对应 agent 的技能目录（以 Claude Code 为例）：
 
 ```bash
 git clone https://github.com/wsoph/storm-research.git ~/.claude/skills/storm-research
 ```
 
-之后在 Claude Code 里直接 `/storm-research <你的研究题目>`，或在对话里要求「研究 / 深挖 / 分析 / 给我一份简报」，skill 会自动触发。报告**跟随你提问所用的语言**产出（中文题目出中文报告，英文题目出英文报告），文末附完整来源列表。
+装好后，直接 `/storm-research <你的研究题目>`，或在对话里要求「研究 / 深挖 / 分析 / 给我一份简报」，skill 会自动触发。报告**跟随你提问所用的语言**产出（中文题目出中文报告，英文题目出英文报告），文末附完整来源列表。
 
 ## 目录结构
 

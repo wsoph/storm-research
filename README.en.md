@@ -10,13 +10,13 @@
 
 ## What it is
 
-`storm-research` is a personal **skill** for [Claude Code](https://claude.com/claude-code). It takes the popular **4-prompt research method** (Nav Toor's STORM-style flow: five expert perspectives → contradiction map → synthesis briefing → self peer-review) and fixes its one real weakness:
+`storm-research` is a **portable AI-agent skill** — it works in [Claude Code](https://claude.com/claude-code), Hermes Agent, OpenClaw, Codex, and other skill-capable agents. It takes the popular **4-prompt research method** (Nav Toor's STORM-style flow: five expert perspectives → contradiction map → synthesis briefing → self peer-review) and fixes its one real weakness:
 
 > **The original runs purely on the model's memory and happily hallucinates. This skill forces every stage to be grounded in real web search, and every factual claim must cite a retrieved source.**
 
 ## What "STORM" stands for
 
-**STORM** is not the weather — it is an acronym from Stanford's OVAL lab for a research-writing method:
+**STORM** is an acronym from Stanford's OVAL lab for a research-writing method:
 
 > **S**ynthesis of **T**opic **O**utlines through **R**etrieval and **M**ulti-perspective question asking
 
@@ -59,13 +59,17 @@ python scripts/search.py extract "<url>"
 
 ## Install & use
 
-This is a Claude Code personal skill. Drop the whole directory into your skills folder:
+This skill works in any skill-capable AI agent (Claude Code, Hermes Agent, OpenClaw, Codex, …). The easiest way — **just give the repo URL to whatever agent you use and let it install the skill for you**:
+
+> Install this skill: https://github.com/wsoph/storm-research
+
+Or clone it manually into your agent's skills folder (Claude Code shown here):
 
 ```bash
 git clone https://github.com/wsoph/storm-research.git ~/.claude/skills/storm-research
 ```
 
-Then in Claude Code, run `/storm-research <your topic>`, or just ask it to "research / deep-dive / analyze / give me a briefing" and the skill triggers automatically. Reports are written **in the language of your request** (a Chinese topic yields a Chinese report, an English topic yields an English report), ending with a full source list.
+Then run `/storm-research <your topic>`, or just ask it to "research / deep-dive / analyze / give me a briefing" and the skill triggers automatically. Reports are written **in the language of your request** (a Chinese topic yields a Chinese report, an English topic yields an English report), ending with a full source list.
 
 ## Layout
 
